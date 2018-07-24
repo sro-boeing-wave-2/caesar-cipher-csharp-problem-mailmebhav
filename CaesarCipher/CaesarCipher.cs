@@ -9,11 +9,14 @@ namespace CaesarCipher
         public static string Rotate(string text, int shiftKey)
         {
             StringBuilder resultstring = new StringBuilder("");
-            if (shiftKey >= 26)
+            int numberOfAlphabets = 26;
+            int AsciiValueofz = 123;
+            int AsciiValueOfZ = 91;
+            if (shiftKey >= numberOfAlphabets)
             {
-                while (shiftKey >= 26)
+                while (shiftKey >= numberOfAlphabets)
                 {
-                    shiftKey = shiftKey % 26;
+                    shiftKey = shiftKey % numberOfAlphabets;
                 }
             }
             foreach (char letter in text)
@@ -23,9 +26,9 @@ namespace CaesarCipher
                 if ('A' <= letter && letter <= 'Z')
                 {
                     temp = letter + shiftKey;
-                    while(temp>=91)
+                    while(temp>=AsciiValueOfZ)
                     {
-                        temp -= 26;
+                        temp -= numberOfAlphabets;
                     }
                     character = (char)temp;
                     resultstring.Append(character);
@@ -33,9 +36,9 @@ namespace CaesarCipher
                 else if ('a' <= letter && letter <= 'z')
                 {
                     temp = letter + shiftKey;
-                    while (temp >= 123)
+                    while (temp >= AsciiValueofz)
                     {
-                        temp -= 26;
+                        temp -= numberOfAlphabets;
                     }
                     character = (char)temp;
                     resultstring.Append(character);
